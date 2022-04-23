@@ -16,8 +16,8 @@
         <a class="button fancy-button" [routerLink]="['/products', 'cart', 'checkout']"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Checkout<sup *ngIf="noOfCartItems">{{noOfCartItems}}</sup></a> &nbsp;
       </ng-template>
       <ng-template [ngIf]="!user?.isLoggedIn">
-        <a class="button fancy-button" [routerLink]="['/login']"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a> &nbsp;
-        <a class="button fancy-button" [routerLink]="['/register']"><i class="fa fa-sign-in" aria-hidden="true"></i> Register</a> &nbsp;
+        <a class="button fancy-button" [routerLink]="['/account', 'login']"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a> &nbsp;
+        <a class="button fancy-button" [routerLink]="['/account', 'sign-up']"><i class="fa fa-sign-in" aria-hidden="true"></i> Register</a> &nbsp;
       </ng-template>
       <ng-template [ngIf]="user?.isLoggedIn">
         <a class="button fancy-button" (click)="logOut()"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout {{user.isLoggedIn ? ", Mr. " + user.userName : ''}}</a>

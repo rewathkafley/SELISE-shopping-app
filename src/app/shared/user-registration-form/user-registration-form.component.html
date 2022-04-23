@@ -71,7 +71,7 @@
                                 <span *ngIf="showSubmitLoader" class="spinner-border spinner-border-sm mr-1"></span>
                                 Submit
                             </button>
-                            <a *ngIf="title == 'Sign Up'" [routerLink]="['/login']" class="btn btn-link">Already a user? Login</a>
+                            <a *ngIf="title == 'Sign Up'" [routerLink]="['/account', 'login']" class="btn btn-link">Already a user? Login</a>
                         </div>
                     </form>
                 </div>
