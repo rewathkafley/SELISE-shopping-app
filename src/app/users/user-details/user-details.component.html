@@ -1,1 +1,17 @@
-<p>user-details works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <button *ngIf="role == ROLE.USER && user?.id" [routerLink]="['/users', user.id, 'edit']" type="button" class="btn-outline-primary btn-sm ml-auto mr-1 mt-1">Edit User</button>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-3">
+            <img class="card-img-top" src="/assets/user.png" alt="Card image" style="width:100%">
+        </div>
+        <div class="col-9">
+            <h3>User Name: {{ user.userName }}</h3>
+            <p>Firs Name: {{ user?.firstName }}</p>
+            <p>Last Name: {{ user?.lastName}}</p>
+            <p>Role: {{ user?.id ? user?.role : '' }}</p>
+        </div>
+    </div>
+</div>
