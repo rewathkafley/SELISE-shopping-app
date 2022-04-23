@@ -40,7 +40,6 @@ export class ProductsComponent extends BaseComponent implements OnInit {
 
   getUserRole() {
     this.role = this.authService.getUser().role;
-    this.role = Role.ADMIN;
   }
 
   addToCart(product: Product) {
