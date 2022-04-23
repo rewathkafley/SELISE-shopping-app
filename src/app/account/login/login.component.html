@@ -26,7 +26,7 @@
                                 <span *ngIf="loginInProgress" class="spinner-border spinner-border-sm mr-1"></span>
                                 Login
                             </button>
-                            <a routerLink="../register" class="btn btn-link">Not registered? Register here</a>
+                            <a [routerLink]="['/account', 'sign-up']" class="btn btn-link">Not registered? Register here</a>
                         </div>
                     </form>
                 </div>
