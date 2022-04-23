@@ -1,15 +1,53 @@
 <div class="container-fluid">
+    <div class="row mb-3 mt-1">
+        <div class="col-5">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Price From: </span>
+                </div>
+                <!-- <label for="priceFrom">Price From:</label> -->
+                <input type="number" [(ngModel)]="priceFrom" #ctrlPriceFrom="ngModel" class="form-control" id="priceFrom" placeholder="Price From">
+                <!-- <label for="priceTo">Price From:</label>
+                <input type="number" [(ngModel)]="priceTo" #ctrlPriceTo="ngModel" class="form-control" id="priceTo" placeholder="Price To"> -->
+            </div>
+        </div>
+        <div class="col-5">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Price To: </span>
+                </div>
+                <!-- <label for="priceFrom">Price From:</label> -->
+                <!-- <input type="number" [(ngModel)]="priceFrom" #ctrlPriceFrom="ngModel" class="form-control" id="priceFrom" placeholder="Price From">
+                <label for="priceTo">Price From:</label> -->
+                <input type="number" [(ngModel)]="priceTo" #ctrlPriceTo="ngModel" class="form-control" id="priceTo" placeholder="Price To">
+            </div>
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn-outline-primary btn-sm float-left mr-2" (click)="searchProducts()">Search</button>
+            <button *ngIf="role == ROLE.ADMIN" [routerLink]="['/products', 'create']" type="button" class="btn-outline-primary btn-sm float-right">Create Product</button>
+        </div>
+    </div>
     <div class="row">
         <div class="col-2" *ngFor="let product of products; index as i">
-            <a class="nav-link" [routerLink]="['/products', 1]">
-                <div class="card" style="width:200px">
+            <div class="card" style="width:200px">
+                <a class="nav-link" [routerLink]="['/products', product.id]">
                     <img class="card-img-top" src="/assets/product.jpg" alt="Card image" style="width:100%">
-                    <div class="card-body">
-                    <h4 class="card-title">Product Name</h4>
-                    <p class="card-text">Product Description</p>
+                </a>
+                <div class="card-body" style="padding: 3px;">
+                    <h5 class="card-title">{{product?.name}}</h5>
+                    <p class="card-text">{{ product?.description }}</p>
+                    <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        <span>Price: {{ product?.price | currency}}</span> &nbsp;
+                        <span *ngIf="product?.stock">In stock ({{product.stock}})</span> &nbsp;
                     </div>
+                    <ng-template [ngIf]="product?.stock">
+                        <button type="button" class="btn-outline-primary btn-sm" (click)="addToCart(product)">Add to Cart</button> &nbsp;
+                        <button *ngIf="role == ROLE.ADMIN && product.id" [routerLink]="['/products', product.id, 'edit']" type="button" class="btn-outline-primary btn-sm float-left">Edit</button>
+                        <button *ngIf="role == ROLE.ADMIN && product.id" type="button" (click)="deleteProduct(product.id)" class="btn-outline-primary btn-sm float-left">Delete</button>
+                    </ng-template>
+                    <span *ngIf="!product.stock">Stock out</span>
                 </div>
-            </a>
+            </div>
         </div>
     </div>
 </div>
