@@ -1,0 +1,83 @@
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-3">
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <h4 class="card-header">{{title}}</h4>
+                <div class="card-body">
+                    <form [formGroup]="userRegistrationForm" #regForm="ngForm" (ngSubmit)="onUserRegistrationFormSubmit()">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" formControlName="userName" class="form-control" [ngClass]="{ 'is-invalid': regForm.submitted && userRegistrationForm.controls['userName'].errors }" />
+                            <div *ngIf="regForm.submitted && userRegistrationForm.controls['userName'].errors" class="invalid-feedback">
+                                <div *ngIf="userRegistrationForm.controls['userName'].errors['required']">
+                                    Username is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" formControlName="firstName" class="form-control" />
+                            <!-- <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': regForm.submitted && userRegistrationForm.controls['firstName'].errors }" /> -->
+                            <!-- <div *ngIf="regForm.submitted && userRegistrationForm.controls['firstName'].errors" class="invalid-feedback">
+                                <div *ngIf="userRegistrationForm.controls['firstName'].errors['required']">
+                                    First Name is required
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': regForm.submitted && userRegistrationForm.controls['lastName'].errors }" />
+                            <div *ngIf="regForm.submitted && userRegistrationForm.controls['lastName'].errors" class="invalid-feedback">
+                                <div *ngIf="userRegistrationForm.controls['lastName'].errors['required']">
+                                    Last Name is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': regForm.submitted && userRegistrationForm.controls['password'].errors }" />
+                            <div *ngIf="regForm.submitted && userRegistrationForm.controls['password'].errors" class="invalid-feedback">
+                                <div *ngIf="userRegistrationForm.controls['password'].errors['required']">
+                                    Password is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" *ngIf="role == ROLE.ADMIN">
+                            <label for="role">Role:</label>
+                            <select formControlName="role" class="form-control" id="role" [ngClass]="{ 'is-invalid': regForm.submitted && userRegistrationForm.controls['role'].errors }">
+                              <option value="" selected>Select Role</option>
+                              <option value="admin">Admin</option>
+                              <option value="user">User</option>
+                            </select>
+                            <div *ngIf="regForm.submitted && userRegistrationForm.controls['role'].errors" class="invalid-feedback">
+                                <div *ngIf="userRegistrationForm.controls['role'].errors['required']">
+                                    Role is required
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group">
+                            <label for="role">Role</label>
+                            <input type="text" formControlName="role" class="form-control" [ngClass]="{ 'is-invalid': regForm.submitted && userRegistrationForm.controls['role'].errors }" />
+                            <div *ngIf="regForm.submitted && userRegistrationForm.controls['role'].errors" class="invalid-feedback">
+                                <div *ngIf="userRegistrationForm.controls['role'].errors['required']">
+                                    Role is required
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="form-group">
+                            <button [disabled]="showSubmitLoader" class="btn btn-primary">
+                                <span *ngIf="showSubmitLoader" class="spinner-border spinner-border-sm mr-1"></span>
+                                Submit
+                            </button>
+                            <a *ngIf="title == 'Sign Up'" [routerLink]="['/login']" class="btn btn-link">Already a user? Login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+        </div>
+    </div>
+</div>
