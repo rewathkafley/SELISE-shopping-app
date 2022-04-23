@@ -1,0 +1,56 @@
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-4">
+        </div>
+        <div class="col-4">
+            <div *ngIf="!items.length">
+                Nothing found for checkout
+            </div>
+
+
+            <div *ngFor="let item of items; index as i;" style="display: flex;">
+                <span>{{ item?.name }}</span> &nbsp; &nbsp;
+                <span class="ml-auto">
+                    <span>{{ item.price | currency }}</span>
+                    <span class="ml-3">
+                        <a class="nav-link d-inline" (click)="removeItem(item)">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                    </span>
+                </span>
+            </div>
+
+
+            <div *ngIf="items.length" class="mt-5">
+                <form [formGroup]="checkoutForm" #regForm="ngForm" (ngSubmit)="onCheckoutFormSubmit()">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': regForm.submitted && checkoutForm.controls['name'].errors }" />
+                        <div *ngIf="regForm.submitted && checkoutForm.controls['name'].errors" class="invalid-feedback">
+                            <div *ngIf="checkoutForm.controls['name'].errors['required']">
+                                Name is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': regForm.submitted && checkoutForm.controls['address'].errors }" />
+                        <div *ngIf="regForm.submitted && checkoutForm.controls['address'].errors" class="invalid-feedback">
+                            <div *ngIf="checkoutForm.controls['address'].errors['required']">
+                                Address is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button [disabled]="checkoutFormSubmitInProgress" class="btn btn-primary">
+                            <span *ngIf="checkoutFormSubmitInProgress" class="spinner-border spinner-border-sm mr-1"></span>
+                            Purchase
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-4">
+        </div>
+    </div>
+</div>
