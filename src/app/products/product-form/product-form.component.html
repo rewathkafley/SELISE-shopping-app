@@ -1,1 +1,59 @@
-<p>product-form works!</p>
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-3">
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <h4 class="card-header">{{ product?.id ? 'Update' : 'Create' }} Product</h4>
+                <div class="card-body">
+                    <form [formGroup]="productForm" #regForm="ngForm" (ngSubmit)="onProductFormSubmit()">
+                        <div class="form-group">
+                            <label for="name">Product Name</label>
+                            <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': regForm.submitted && productForm.controls['name'].errors }" />
+                            <div *ngIf="regForm.submitted && productForm.controls['name'].errors" class="invalid-feedback">
+                                <div *ngIf="productForm.controls['name'].errors['required']">
+                                    Product name is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Product Description</label>
+                            <input type="text" formControlName="description" class="form-control" [ngClass]="{ 'is-invalid': regForm.submitted && productForm.controls['description'].errors }" />
+                            <div *ngIf="regForm.submitted && productForm.controls['description'].errors" class="invalid-feedback">
+                                <div *ngIf="productForm.controls['description'].errors['required']">
+                                    Product description is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="stock">Stock</label>
+                            <input type="number" formControlName="stock" class="form-control" [ngClass]="{ 'is-invalid': regForm.submitted && productForm.controls['stock'].errors }" />
+                            <div *ngIf="regForm.submitted && productForm.controls['stock'].errors" class="invalid-feedback">
+                                <div *ngIf="productForm.controls['stock'].errors['required']">
+                                    Stock is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="number" formControlName="price" class="form-control" [ngClass]="{ 'is-invalid': regForm.submitted && productForm.controls['price'].errors }" />
+                            <div *ngIf="regForm.submitted && productForm.controls['price'].errors" class="invalid-feedback">
+                                <div *ngIf="productForm.controls['price'].errors['required']">
+                                    Price is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button [disabled]="productFormSubmitInProgress" class="btn btn-primary">
+                                <span *ngIf="productFormSubmitInProgress" class="spinner-border spinner-border-sm mr-1"></span>
+                                {{ product?.id ? 'Update' : 'Create' }}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+        </div>
+    </div>
+</div>
