@@ -3,21 +3,24 @@ import { CommonModule } from '@angular/common';
 
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products.component';
-import { SharedModule } from '../shared/shared.module';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductFormComponent } from './product-form/product-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CheckOutComponent } from './check-out/check-out.component';
 
 
 @NgModule({
   declarations: [
     ProductsComponent,
     ProductDetailsComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    CheckOutComponent
   ],
   imports: [
     CommonModule,
-    ProductsRoutingModule,
-    SharedModule
+    FormsModule,
+    ReactiveFormsModule,
+    ProductsRoutingModule
   ]
 })
 export class ProductsModule { }
