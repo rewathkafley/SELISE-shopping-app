@@ -1,1 +1,23 @@
-<p>users works!</p>
+<div class="container-fluid mt-3">
+    <div class="row mb-3 mt-1">
+        <div class="col">
+            <button [routerLink]="['/users', 'create']" type="button" class="btn-outline-primary btn-sm float-left">Create User</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2" *ngFor="let user of users; index as i">
+            <div class="card" style="width:250px">
+                <a class="nav-link" [routerLink]="['/users', user.id]">
+                    <img class="card-img-top" src="/assets/user.png" alt="Card image" style="width:100%">
+                </a>
+                <div class="card-body" style="padding: 3px;">
+                    <h5 class="card-title">User Name: {{user?.userName}}</h5>
+                    <p class="card-text">Last Name: {{ user?.lastName }}</p>
+                    <p class="card-text">Role: {{ user?.role }}</p>
+                    <button type="button" class="btn-outline-primary btn-sm" (click)="removeUser(user.id)">Delete</button> &nbsp;
+                    <button type="button" class="btn-outline-primary btn-sm" [routerLink]="['/users', user.id, 'edit']">Edit</button> &nbsp;
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
