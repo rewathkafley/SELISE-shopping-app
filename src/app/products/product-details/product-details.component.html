@@ -1,1 +1,18 @@
-<p>product-details works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <button *ngIf="role == ROLE.USER && product.id" [routerLink]="['/products', product.id, 'edit']" type="button" class="btn-outline-primary btn-sm ml-auto mr-1 mt-1">Edit Product</button>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-3">
+            <img class="card-img-top" src="/assets/product.jpg" alt="Card image" style="width:100%">
+        </div>
+        <div class="col-9">
+            <h3>Product Name: {{ product.name }}</h3>
+            <p>{{ product?.description }}</p>
+            <p>{{ product?.price | currency }}</p>
+            <p>{{ product?.stock ? "In stock (" + product.stock + ")" : "Stock Out" }}</p>
+            <button type="button" class="btn-outline-primary btn-sm" (click)="addToCart()">Add to Cart</button> &nbsp;
+        </div>
+    </div>
+</div>
