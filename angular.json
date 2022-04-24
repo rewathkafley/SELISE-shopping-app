@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "docs",
+            "outputPath": "dist/shopping-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -105,7 +105,12 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "@netlify-builder/deploy:deploy",
+          "options": {
+            "outputPath": "dist/shopping-app",
+            "netlifyToken": "v3tV7EcCPFGvbgWJq95_sLGG7TKM9L1xHdgb6x-wiSk",
+            "siteId": "0cf65b47-04de-481e-ad3d-1607bfb283a3"
+          }
         }
       }
     }
